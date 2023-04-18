@@ -15,7 +15,6 @@ class NoteCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         noteView.layer.cornerRadius = noteView.frame.size.height / 10
         noteView.backgroundColor = UIColor.systemPink
     

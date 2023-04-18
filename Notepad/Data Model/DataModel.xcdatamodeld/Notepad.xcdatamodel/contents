@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <relationship name="parentship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Preview" inverseName="notes" inverseEntity="Preview"/>
+    </entity>
+    <entity name="Preview" representedClassName="Preview" syncable="YES" codeGenerationType="class">
+        <attribute name="previewText" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="parentship" inverseEntity="Note"/>
+    </entity>
+</model>
