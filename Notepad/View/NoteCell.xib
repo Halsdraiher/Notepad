@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="201" id="XFc-yQ-B6n" customClass="NoteCell" customModule="Notepad" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="439" height="201"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XFc-yQ-B6n" id="thO-F9-onF">
+                <rect key="frame" x="0.0" y="0.0" width="439" height="201"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-Bi-qyF">
+                        <rect key="frame" x="10" y="10" width="419" height="181"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rk7-vg-RpN" userLabel="Title">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="tQ5-6b-BFv" userLabel="width = 200"/>
+                                    <constraint firstAttribute="height" constant="25" id="wos-aF-uqN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRR-Ya-WAB" userLabel="NoteView">
+                                <rect key="frame" x="0.0" y="35" width="419" height="146"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xni-GV-7Gt">
+                                        <rect key="frame" x="10" y="10" width="399" height="126"/>
+                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Xni-GV-7Gt" secondAttribute="trailing" constant="10" id="Tfh-3b-UWp"/>
+                                    <constraint firstItem="Xni-GV-7Gt" firstAttribute="leading" secondItem="SRR-Ya-WAB" secondAttribute="leading" constant="10" id="fte-Wt-AV8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xni-GV-7Gt" secondAttribute="bottom" constant="10" id="gx8-F3-12b"/>
+                                    <constraint firstItem="Xni-GV-7Gt" firstAttribute="top" secondItem="SRR-Ya-WAB" secondAttribute="top" constant="10" id="r7K-HZ-I73"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5bX-Bi-qyF" firstAttribute="top" secondItem="thO-F9-onF" secondAttribute="top" constant="10" id="8Yf-AW-S9p"/>
+                    <constraint firstItem="5bX-Bi-qyF" firstAttribute="leading" secondItem="thO-F9-onF" secondAttribute="leading" constant="10" id="GXa-H7-bXc"/>
+                    <constraint firstAttribute="bottom" secondItem="5bX-Bi-qyF" secondAttribute="bottom" constant="10" id="iNg-Nz-rf2"/>
+                    <constraint firstAttribute="trailing" secondItem="5bX-Bi-qyF" secondAttribute="trailing" constant="10" id="pjv-0N-oTc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="noteText" destination="Xni-GV-7Gt" id="jD4-Gt-Oi6"/>
+                <outlet property="noteView" destination="SRR-Ya-WAB" id="GRa-8F-yGs"/>
+                <outlet property="titleLabel" destination="Rk7-vg-RpN" id="0P0-x0-432"/>
+            </connections>
+            <point key="canvasLocation" x="754.96183206106866" y="-26.408450704225352"/>
+        </tableViewCell>
+    </objects>
+</document>
