@@ -8,10 +8,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="201" id="XFc-yQ-B6n" customClass="NoteCell" customModule="Notepad" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="201" id="XFc-yQ-B6n" customClass="NoteCell" customModule="Notepad" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="439" height="201"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XFc-yQ-B6n" id="thO-F9-onF">
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XFc-yQ-B6n" id="thO-F9-onF">
                 <rect key="frame" x="0.0" y="0.0" width="439" height="201"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>

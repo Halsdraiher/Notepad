@@ -31,7 +31,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="T0B-OI-PCc" id="c7Q-Lf-OnN"/>
-                        <segue destination="aeN-nx-1av" kind="show" identifier="goToNote" id="Zfo-TA-0pd"/>
+                        <segue destination="aeN-nx-1av" kind="show" identifier="goToNotes" id="Zfo-TA-0pd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEl-lt-VeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -50,26 +50,36 @@
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </navigationBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoteText" id="5zO-LM-3Wz">
-                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5zO-LM-3Wz" id="Q4a-1W-U2z">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <textView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="NoteText" id="p4b-9q-m4c">
+                            <rect key="frame" x="0.0" y="44" width="393" height="836"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                        </textView>
                         <connections>
                             <outlet property="dataSource" destination="aeN-nx-1av" id="MZE-lj-FPl"/>
                             <outlet property="delegate" destination="aeN-nx-1av" id="JRn-mf-Jny"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="cMk-nA-CS4"/>
+                    <navigationItem key="navigationItem" title="Title" id="cMk-nA-CS4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hBT-C8-nni">
+                            <connections>
+                                <action selector="savePressed:" destination="aeN-nx-1av" id="XGe-st-7dO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="noteTableView" destination="UUY-pT-8ae" id="ZQG-fz-e9V"/>
+                        <outlet property="noteText" destination="p4b-9q-m4c" id="YVa-Vp-bLR"/>
+                        <outlet property="noteTitle" destination="cMk-nA-CS4" id="bcD-tM-bkJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yPd-aQ-whu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2219" y="8"/>
+            <point key="canvasLocation" x="2216.030534351145" y="7.746478873239437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vdT-XA-glh">
@@ -89,6 +99,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

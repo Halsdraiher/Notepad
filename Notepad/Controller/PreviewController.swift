@@ -11,7 +11,6 @@ import CoreData
 class PreviewController: UIViewController {
     
     var previewArray = [Preview]()
-    var noteCell = NoteCell()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -52,8 +51,6 @@ class PreviewController: UIViewController {
 
     }
     
-    
-    
     //MARK: - Add Button Pressed
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -78,7 +75,6 @@ class PreviewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
 
 }
 
@@ -96,6 +92,28 @@ extension PreviewController: UITableViewDataSource {
         cell.titleLabel?.text = preview.title
         
         return cell
+    }
+    
+}
+
+//MARK: - UITableViewDelegate
+
+extension PreviewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToNotes", sender: self)
+        
+        savePreviews()
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! NoteViewController
+
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedPreview = previewArray[indexPath.row]
+        }
     }
     
 }
