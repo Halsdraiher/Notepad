@@ -9,9 +9,10 @@ import UIKit
 import CoreData
 
 class NoteViewController: UITableViewController {
-    
-    var noteArray = [Note]()
+
+    var previewArray = [Preview]()
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var index: Int?
     
     var selectedPreview : Preview? {
         didSet {
@@ -25,23 +26,25 @@ class NoteViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        noteTableView.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
+        noteText.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
         noteTableView.delegate = self
         noteTableView.dataSource = self
+        loadNotes()
     }
     
-    @IBAction func savePressed(_ sender: Any) {
-        let newNote = Note(context: self.context)
+    //MARK: - Save Data
+    
+    @IBAction func savePressed(_ sender: UIBarButtonItem) {
+        previewArray[index!].previewText = noteText.text
         
-        newNote.text = noteText.text
-        self.saveNotes()
-        self.loadNotes()
+        saveNotes()
     }
+    
     
     //MARK: - Model Manupulation Methods
     
     func saveNotes() {
-        
         do {
             try context.save()
         } catch {
@@ -51,18 +54,13 @@ class NoteViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadNotes(with request: NSFetchRequest<Note> = Note.fetchRequest(), predicate: NSPredicate? = nil) {
-        
-        let notePredicate = NSPredicate(format: "parentCategory.title MATCHES %@", selectedPreview!.title!)
-        
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [notePredicate, additionalPredicate])
-        } else {
-            request.predicate = notePredicate
-        }
+    func loadNotes(with request: NSFetchRequest<Preview> = Preview.fetchRequest(), predicate: NSPredicate? = nil) {
         
         do {
-            noteArray = try context.fetch(request)
+            previewArray = try context.fetch(request)
+            noteTitle.title = previewArray[index!].title
+            noteText.text = previewArray[index!].previewText
+            
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -70,9 +68,6 @@ class NoteViewController: UITableViewController {
         tableView.reloadData()
         
     }
-    
-    
 
 }
-
 

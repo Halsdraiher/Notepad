@@ -9,15 +9,16 @@ import UIKit
 
 class NoteCell: UITableViewCell {
     
+    let previewArray = [Preview]()
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var noteView: UIView!
     @IBOutlet weak var noteText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        noteView.layer.cornerRadius = noteView.frame.size.height / 10
-        noteView.backgroundColor = UIColor.systemPink
-    
+        backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
+        layer.cornerRadius = frame.size.height / 10
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

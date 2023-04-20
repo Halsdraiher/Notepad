@@ -18,12 +18,17 @@ class PreviewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadPreviews()
         tableView.dataSource = self
         tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.backgroundColor = #colorLiteral(red: 0, green: 0.6070936322, blue: 0.588455379, alpha: 1)
         
+        print(previewArray.count)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         loadPreviews()
-        
     }
     
     //MARK: - Data Manipulating Methods
@@ -61,6 +66,7 @@ class PreviewController: UIViewController {
             let newPreview = Preview(context: self.context)
             
             newPreview.title = textField.text!
+            newPreview.previewText = ""
             
             self.previewArray.append(newPreview)
             
@@ -75,10 +81,12 @@ class PreviewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-
 }
 
 //MARK: - UITableViewDataSource
+    // Setup cell with [Preview] items
+    // Show PreviewView items on tableView
+    
 
 extension PreviewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,13 +98,32 @@ extension PreviewController: UITableViewDataSource {
         
         let preview = previewArray[indexPath.row]
         cell.titleLabel?.text = preview.title
-        
+        cell.noteText?.text = preview.previewText
         return cell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
+                   indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Create swipe action
+        let action = UIContextualAction (style: .destructive, title: "Delete") { (action, view, completionHandler) in
+
+            let noteToDelete = self.previewArray[indexPath.row]
+            self.context.delete(noteToDelete)
+            self.savePreviews()
+            self.loadPreviews()
+        }
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    
+    
 }
 
+
+
 //MARK: - UITableViewDelegate
+    // Segue to NoteViewController
+    // Prepare NoteViewController to loading
 
 extension PreviewController: UITableViewDelegate {
     
@@ -112,7 +139,7 @@ extension PreviewController: UITableViewDelegate {
         let destinationVC = segue.destination as! NoteViewController
 
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedPreview = previewArray[indexPath.row]
+            destinationVC.index = indexPath.row
         }
     }
     
