@@ -18,7 +18,6 @@ class NoteCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
-        layer.cornerRadius = frame.size.height / 10
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

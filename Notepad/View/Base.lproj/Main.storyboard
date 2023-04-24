@@ -59,7 +59,6 @@
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                         </textView>
                         <connections>
                             <outlet property="dataSource" destination="aeN-nx-1av" id="MZE-lj-FPl"/>
