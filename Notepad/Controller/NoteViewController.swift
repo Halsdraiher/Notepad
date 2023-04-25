@@ -12,7 +12,6 @@ class NoteViewController: UITableViewController {
 
     var previewArray = [Preview]()
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var index: Int?
     
     var selectedPreview : Preview? {
         didSet {
@@ -31,7 +30,6 @@ class NoteViewController: UITableViewController {
         
         noteTableView.backgroundColor = UIColor(named: K.Colors.noteColor)
         noteText.backgroundColor = UIColor(named: K.Colors.noteColor)
-
         
         noteText.delegate = self
         noteTableView.delegate = self
@@ -40,11 +38,11 @@ class NoteViewController: UITableViewController {
         loadNotes()
     }
     
-    //MARK: - Save Data
+    //MARK: - Save changes
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
-        previewArray[index!].previewText = noteText.text
-        
+        selectedPreview!.previewText = noteText.text
+        navigationItem.rightBarButtonItem?.isHidden = true
         saveNotes()
     }
     
@@ -66,9 +64,7 @@ class NoteViewController: UITableViewController {
         
         do {
             previewArray = try context.fetch(request)
-            noteTitle.title = previewArray[index!].title
-            noteText.text = previewArray[index!].previewText
-            
+            noteTitle.title = selectedPreview!.title
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -81,7 +77,7 @@ class NoteViewController: UITableViewController {
 
 extension NoteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        if noteText.text == previewArray[index!].previewText{
+        if noteText.text == selectedPreview!.previewText{
             navigationItem.rightBarButtonItem?.isHidden = true
         } else {
             navigationItem.rightBarButtonItem?.isHidden = false

@@ -31,7 +31,7 @@ class PreviewController: UIViewController {
     }
     
     //MARK: - Data Manipulating Methods
-    
+    // Save data to CoreData
     func savePreviews() {
         
         do {
@@ -43,6 +43,7 @@ class PreviewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    // Take data from CoreData
     func loadPreviews(with request: NSFetchRequest<Preview> = Preview.fetchRequest()) {
         
         do {
@@ -56,7 +57,7 @@ class PreviewController: UIViewController {
     }
     
     //MARK: - Add Button Pressed
-    
+    //Create alert for adding new note
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -87,11 +88,9 @@ class PreviewController: UIViewController {
 }
 
 //MARK: - UITableViewDataSource
-// Setup cell with [Preview] items
-// Show PreviewView items on tableView
-
 
 extension PreviewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return previewArray.count
     }
@@ -105,6 +104,7 @@ extension PreviewController: UITableViewDataSource {
         return cell
     }
     
+    // Use swipe action for row method
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         // Create swipe action for deleting row
@@ -137,8 +137,8 @@ extension PreviewController: UITableViewDataSource {
             }))
             
             alert.addTextField { (alertTextField) in
-                let oldTitle = self.previewArray[indexPath.row]
-                alertTextField.text = oldTitle.title
+                let currentTitle = self.previewArray[indexPath.row]
+                alertTextField.text = currentTitle.title
                 textField = alertTextField
             }
             
@@ -152,14 +152,10 @@ extension PreviewController: UITableViewDataSource {
     
 }
 
-
-
 //MARK: - UITableViewDelegate
-// Segue to NoteViewController
-// Prepare NoteViewController to loading
 
 extension PreviewController: UITableViewDelegate {
-    
+    // Segue to NoteViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.segueInentifier, sender: self)
         
@@ -167,12 +163,13 @@ extension PreviewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+    // Prepare NoteViewController to loading
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! NoteViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.index = indexPath.row
+            destinationVC.selectedPreview = previewArray[indexPath.row]
+            destinationVC.noteText.text = previewArray[indexPath.row].previewText
         }
     }
     
