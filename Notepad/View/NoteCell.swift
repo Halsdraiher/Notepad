@@ -12,8 +12,8 @@ class NoteCell: UITableViewCell {
     let previewArray = [Preview]()
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var noteView: UIView!
     @IBOutlet weak var noteText: UILabel!
+    @IBOutlet weak var creationDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,6 +11,7 @@ import CoreData
 class PreviewController: UIViewController {
     
     var previewArray = [Preview]()
+    let formatter = DateFormatter()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -67,6 +68,10 @@ class PreviewController: UIViewController {
             
             newPreview.title = textField.text!
             newPreview.previewText = ""
+            newPreview.createdAt = Date()
+            self.formatter.dateFormat = "dd/MM/yyyy"
+            let dateString = self.formatter.string(from: newPreview.createdAt!)
+            newPreview.creationDate = dateString
             
             self.previewArray.append(newPreview)
             
@@ -101,6 +106,7 @@ extension PreviewController: UITableViewDataSource {
         let preview = previewArray[indexPath.row]
         cell.titleLabel?.text = preview.title
         cell.noteText?.text = preview.previewText
+        cell.creationDate?.text = preview.creationDate
         return cell
     }
     
