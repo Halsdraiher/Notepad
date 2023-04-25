@@ -26,10 +26,16 @@ class NoteViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem?.isHidden = true
+        noteText.becomeFirstResponder()
+        
         noteTableView.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
         noteText.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
+        
+        noteText.delegate = self
         noteTableView.delegate = self
         noteTableView.dataSource = self
+        
         loadNotes()
     }
     
@@ -45,12 +51,13 @@ class NoteViewController: UITableViewController {
     //MARK: - Model Manupulation Methods
     
     func saveNotes() {
+        navigationItem.rightBarButtonItem?.isHidden = true
+        noteText.endEditing(true)
         do {
             try context.save()
         } catch {
             print("Error saving context \(error)")
         }
-        
         self.tableView.reloadData()
     }
     
@@ -71,3 +78,12 @@ class NoteViewController: UITableViewController {
 
 }
 
+extension NoteViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if noteText.text == previewArray[index!].previewText{
+            navigationItem.rightBarButtonItem?.isHidden = true
+        } else {
+            navigationItem.rightBarButtonItem?.isHidden = false
+        }
+    }
+}
