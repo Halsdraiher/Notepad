@@ -18,12 +18,11 @@ class PreviewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadPreviews()
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        tableView.backgroundColor = #colorLiteral(red: 0, green: 0.6070936322, blue: 0.588455379, alpha: 1)
-        
-        print(previewArray.count)
+        tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.reusableIdentifier)
+        tableView.backgroundColor = UIColor(named: K.Colors.previewColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -162,7 +161,7 @@ extension PreviewController: UITableViewDataSource {
 extension PreviewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToNotes", sender: self)
+        performSegue(withIdentifier: K.segueInentifier, sender: self)
         
         savePreviews()
         

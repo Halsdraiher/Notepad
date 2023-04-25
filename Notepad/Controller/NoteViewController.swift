@@ -29,8 +29,9 @@ class NoteViewController: UITableViewController {
         navigationItem.rightBarButtonItem?.isHidden = true
         noteText.becomeFirstResponder()
         
-        noteTableView.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
-        noteText.backgroundColor = #colorLiteral(red: 0, green: 0.7844639421, blue: 0.7138563991, alpha: 1)
+        noteTableView.backgroundColor = UIColor(named: K.Colors.noteColor)
+        noteText.backgroundColor = UIColor(named: K.Colors.noteColor)
+
         
         noteText.delegate = self
         noteTableView.delegate = self
