@@ -20,7 +20,8 @@ class NoteViewController: UITableViewController {
     }
     
     @IBOutlet weak var noteText: UITextView!
-    @IBOutlet weak var noteTitle: UINavigationItem!
+    
+    @IBOutlet weak var noteTitle: UITextField!
     @IBOutlet var noteTableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,7 +31,11 @@ class NoteViewController: UITableViewController {
         
         noteTableView.backgroundColor = UIColor(named: K.ColorSets.backColor)
         noteText.backgroundColor = UIColor(named: K.ColorSets.backColor)
+        noteTitle.backgroundColor = UIColor(named: K.ColorSets.backColor)
         
+        noteTitle.text = selectedPreview?.title
+        
+        noteTitle.delegate = self
         noteText.delegate = self
         noteTableView.delegate = self
         noteTableView.dataSource = self
@@ -42,6 +47,7 @@ class NoteViewController: UITableViewController {
     
     @IBAction func savePressed(_ sender: UIBarButtonItem) {
         selectedPreview!.previewText = noteText.text
+        selectedPreview!.title = noteTitle.text
         navigationItem.rightBarButtonItem?.isHidden = true
         saveNotes()
     }
@@ -64,7 +70,6 @@ class NoteViewController: UITableViewController {
         
         do {
             previewArray = try context.fetch(request)
-            noteTitle.title = selectedPreview!.title
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -77,7 +82,17 @@ class NoteViewController: UITableViewController {
 
 extension NoteViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        if noteText.text == selectedPreview!.previewText{
+        if noteText.text == selectedPreview!.previewText {
+            navigationItem.rightBarButtonItem?.isHidden = true
+        } else {
+            navigationItem.rightBarButtonItem?.isHidden = false
+        }
+    }
+}
+
+extension NoteViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if noteTitle.text == selectedPreview!.title {
             navigationItem.rightBarButtonItem?.isHidden = true
         } else {
             navigationItem.rightBarButtonItem?.isHidden = false

@@ -16,6 +16,7 @@ class PreviewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,7 @@ class PreviewController: UIViewController {
             
             newPreview.title = textField.text!
             newPreview.previewText = ""
+            
             newPreview.createdAt = Date()
             self.formatter.dateFormat = "dd/MM/yyyy"
             let dateString = self.formatter.string(from: newPreview.createdAt!)
@@ -107,6 +109,7 @@ extension PreviewController: UITableViewDataSource {
         cell.titleLabel?.text = preview.title
         cell.noteText?.text = preview.previewText
         cell.creationDate?.text = preview.creationDate
+       
         return cell
     }
     
