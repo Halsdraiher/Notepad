@@ -23,7 +23,7 @@ class PreviewController: UIViewController {
         loadPreviews()
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.reusableIdentifier)
-        tableView.backgroundColor = UIColor(named: K.Colors.previewColor)
+        tableView.backgroundColor = UIColor(named: K.ColorSets.backColor)
     }
     
     override func viewDidAppear(_ animated: Bool) {

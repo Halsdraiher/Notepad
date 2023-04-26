@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-VariableFont_wght.ttf">
+            <string>MontserratRoman-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Notes-->
         <scene sceneID="Ood-Qh-M1y">
@@ -16,6 +21,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="7dh-F0-plB" userLabel="LineView">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="labelColor"/>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="K3d-bR-rbX" id="pdh-t4-8oo"/>
                             <outlet property="delegate" destination="K3d-bR-rbX" id="88Y-8V-qpA"/>
@@ -23,8 +33,8 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Notes" id="eWn-14-lRX">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="L9r-sv-vpm">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="L9r-sv-vpm">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="K3d-bR-rbX" id="zhx-Tn-UPw"/>
                             </connections>
@@ -57,7 +67,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <color key="textColor" systemColor="labelColor"/>
-                            <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="MontserratRoman-Regular" family="Montserrat Thin" pointSize="17"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <connections>
@@ -67,7 +77,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="cMk-nA-CS4">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="hBT-C8-nni">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="savePressed:" destination="aeN-nx-1av" id="ndv-NW-o9v"/>
                             </connections>
@@ -103,7 +113,7 @@
             <point key="canvasLocation" x="429" y="8"/>
         </scene>
     </scenes>
-    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
