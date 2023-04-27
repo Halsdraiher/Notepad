@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62440E3129F9010B00CE2E32 /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62440E3029F9010B00CE2E32 /* Montserrat-VariableFont_wght.ttf */; };
 		6252023B29EE828900EC4808 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252023A29EE828900EC4808 /* NoteViewController.swift */; };
 		6252024229EE9C1C00EC4808 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6252024129EE9C1C00EC4808 /* NoteCell.xib */; };
 		6252024429EEA4CC00EC4808 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252024329EEA4CC00EC4808 /* NoteCell.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62440E3029F9010B00CE2E32 /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		6252023A29EE828900EC4808 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		6252024129EE9C1C00EC4808 /* NoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		6252024329EEA4CC00EC4808 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62440E2D29F8FEAB00CE2E32 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62440E3029F9010B00CE2E32 /* Montserrat-VariableFont_wght.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6252023829EE824100EC4808 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 		62C59A8A29EDC88600BCE47E /* Notepad */ = {
 			isa = PBXGroup;
 			children = (
+				62440E2D29F8FEAB00CE2E32 /* Resources */,
 				6295DE4029EF2A8E0038677E /* Data Model */,
 				62C59A8B29EDC88600BCE47E /* AppDelegate.swift */,
 				62C59A8D29EDC88600BCE47E /* SceneDelegate.swift */,
@@ -167,6 +178,7 @@
 				62C59A9B29EDC88700BCE47E /* LaunchScreen.storyboard in Resources */,
 				62C59A9829EDC88700BCE47E /* Assets.xcassets in Resources */,
 				62C59A9329EDC88700BCE47E /* Main.storyboard in Resources */,
+				62440E3129F9010B00CE2E32 /* Montserrat-VariableFont_wght.ttf in Resources */,
 				6252024229EE9C1C00EC4808 /* NoteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,8 +13,7 @@ struct K {
     static let reusableIdentifier  = "ReusableCell"
     static let segueInentifier = "goToNotes"
     
-    struct Colors {
-        static let previewColor = "PreviewColor"
-        static let noteColor = "NoteColor"
+    struct ColorSets {
+        static let backColor = "BackColor"
     }
 }
