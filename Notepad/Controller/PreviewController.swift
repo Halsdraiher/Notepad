@@ -13,6 +13,12 @@ class PreviewController: UIViewController {
     var previewArray = [Preview]()
     let formatter = DateFormatter()
     
+    var selectedFromPreview: NoteCell? {
+        didSet {
+            loadPreviews()
+        }
+    }
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var tableView: UITableView!
@@ -21,7 +27,6 @@ class PreviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadPreviews()
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.nibName, bundle: nil), forCellReuseIdentifier: K.reusableIdentifier)
         tableView.backgroundColor = UIColor(named: K.ColorSets.backColor)
@@ -29,6 +34,17 @@ class PreviewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.navigationController?.navigationBar.topItem?.title = "Notes"
+        let lbNavTitle = UILabel (frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        lbNavTitle.numberOfLines = 1
+        lbNavTitle.center = CGPoint(x: 0, y: 0)
+        lbNavTitle.font = UIFont(name: "Montserrat Thin", size:25)
+        lbNavTitle.textAlignment = .left
+        lbNavTitle.text = "Notes"
+
+        self.navigationItem.titleView = lbNavTitle
+    
         loadPreviews()
     }
     
@@ -46,8 +62,12 @@ class PreviewController: UIViewController {
     }
     
     // Take data from CoreData
-    func loadPreviews(with request: NSFetchRequest<Preview> = Preview.fetchRequest()) {
+    func loadPreviews(with request: NSFetchRequest<Preview> = Preview.fetchRequest(), predicate: NSPredicate? = nil) {
         
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [additionalPredicate])
+        }
+
         do {
             previewArray = try context.fetch(request)
         } catch {
@@ -181,5 +201,32 @@ extension PreviewController: UITableViewDelegate {
             destinationVC.noteText.text = previewArray[indexPath.row].previewText
         }
     }
+    
+}
+
+extension PreviewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Preview> = Preview.fetchRequest()
+        
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        
+        loadPreviews(with: request, predicate: predicate)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadPreviews()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
     
 }

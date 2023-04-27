@@ -20,7 +20,6 @@ class NoteViewController: UITableViewController {
     }
     
     @IBOutlet weak var noteText: UITextView!
-    
     @IBOutlet weak var noteTitle: UITextField!
     @IBOutlet var noteTableView: UITableView!
     
